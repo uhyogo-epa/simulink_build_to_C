@@ -1,0 +1,22 @@
+# MATLAB temporary files
+*.asv
+*.bak
+*.mex
+*.mexmaci
+*.mexmaci64
+*.mexw64
+*.mexa64
+*.fig
+#fig file
+*.png
+
+# MATLAB debug files
+*_R.mat
+
+# MATLAB generated files
+*.log
+*.out
+
+
+# temp directory
+temp/
