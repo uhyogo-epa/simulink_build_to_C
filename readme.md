@@ -20,14 +20,26 @@ params_T.Description = 'モデルパラメータの設定';
 params_T.DataScope   = 'Exported';
 params_T.HeaderFile  = 'params_T.h';
 params_T.Elements(1) = Simulink.BusElement;
-params_T.Elements(1).Name     = 'K3';
+params_T.Elements(1).Name     = 'K3'; #ここの名前を変更してください
 params_T.Elements(1).DataType = 'double';
 ```
 2. mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
   ```console
   ./build_simulink_model.m
   ```
-3. pythonでsoファイルを読み込み実行，：
+3. pythonでsoファイルを読み込み実行({simulink_model}は適宜書き換えてください)：
   ```console
-  ./combined_cycle_plant_check.py
+  ./simulink_model_execution.py
+  ```
+  モデルの読み込み
+  ```console
+  lib.{simulink_model}._initialize()
+  ```
+  ステップ処理
+  ```console
+  lib.{simulink_model}._step()
+  ```
+  モデルの終了処理
+  ```console
+  lib.{simulink_model}_terminate()
   ```
