@@ -11,8 +11,17 @@ gcc,g++のインストール
 
 # 動作手順
 1. コンパイルするsimulinkモデルの作成<br>
-外部(python)側から変更したいパラメータはmファイルで設定しますがグローバル変数で定義する必要があります．
-mファイルで定義したパラメータをブロック線図に入力してください.<br>
+ 実行時に変更したいパラメータについてはsimulinkモデル上では変数として設定してください. コンパイル時の設定（手順２）のために, この例ではパラメータは構造体paramsのメンバとして設定しています. 
+mファイルで定義したいパラメータをブロック線図に入力してください.<br>
+
+<img src="./docs/image.png" width=300 alt="Total net revenue F for various BESS sizes"/>
+
+
+2. mファイルによるコンパイル<br>
+ まず, 作成したsimulinkモデルと整合するようにmファイルを編集します. 
+ 外部(python)側から変更したいパラメータを mファイルでグローバル変数として指定する必要があります．
+ この際, mファイルではデータ型の定義と値の定義をそれぞれ行う必要があり, この例では, データ型の定義を「params_T」とし, 変数の定義を「params」としています. 
+
 例)
 ```console
 params_T = Simulink.Bus;
@@ -22,14 +31,16 @@ params_T.HeaderFile  = 'params_T.h';
 params_T.Elements(1) = Simulink.BusElement;
 params_T.Elements(1).Name     = 'K3'; #ここの名前を変更してください
 params_T.Elements(1).DataType = 'double';
-```
-<img src="./docs/image.png" width=300 alt="Total net revenue F for various BESS sizes"/>
 
-2. コンパイル<br>
-mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
+<paramsの定義>
+
+```
+
+ mファイルが編集できたら, これを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
 ```console
 ./build_simulink_model.m
 ```
+
 
 3. pythonで利用<br>
 pythonでsoファイルを読み込み実行({simulink_model}は適宜書き換えてください)：
