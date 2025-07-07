@@ -32,7 +32,10 @@ params_T.Elements(1) = Simulink.BusElement;
 params_T.Elements(1).Name     = 'K3'; #ここの名前を変更してください
 params_T.Elements(1).DataType = 'double';
 
-<paramsの定義>
+params = Simulink.Parameter;
+params.DataType     = 'Bus: params_T';
+params.StorageClass = 'ExportedGlobal';
+params.Value.K3     = 0.7;
 
 ```
 
@@ -47,6 +50,40 @@ pythonでsoファイルを読み込み実行({simulink_model}は適宜書き換�
   ```console
   ./simulink_model_execution.py
   ```
+
+mファイル上で定義した構造体とpythonの構造体を一致する必要があります．手順２で定義した構造体の全要素を羅列する必要があります．
+
+例)
+```console
+class params_T(ctypes.Structure):
+    _fields_ = [
+        ('K3', ctypes.c_double)
+        # 必要に応じて追加
+    ]
+```
+
+また入出力も一致させる必要があります．
+
+例）
+```console
+class ExtU(ctypes.Structure):
+    _fields_ = [
+        ('In1', ctypes.c_double)
+        # Simulinkモデルの入力の数だけ羅列
+    ]
+
+class ExtY(ctypes.Structure):
+    _fields_ = [
+        ('Te', ctypes.c_double),
+        ('Eg', ctypes.c_double),
+        ('Es', ctypes.c_double),
+        ('Wf', ctypes.c_double),
+        ('Wr', ctypes.c_double)
+        # Simulinkモデルの出力の数だけ羅列
+    ]
+```
+上記設定後，以下の関数を使用することでsimulinkモデルをpythonで実行できます．
+
   モデルの読み込み
   ```console
   lib.{simulink_model}._initialize()
