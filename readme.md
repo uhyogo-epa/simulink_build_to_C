@@ -26,8 +26,7 @@ params_T.Elements(1).DataType = 'double';
 <img src="./image.png" width=300 alt="Total net revenue F for various BESS sizes"/>
 
 2. コンパイル<br>
-mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
-```console
+mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：<br>```console
 ./build_simulink_model.m
 ```
 
