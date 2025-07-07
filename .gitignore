@@ -8,7 +8,7 @@
 *.mexa64
 *.fig
 #fig file
-*.png
+#*.png
 
 # MATLAB debug files
 *_R.mat
