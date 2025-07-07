@@ -10,8 +10,7 @@ gcc,g++のインストール
   ```
 
 # 動作手順
-1. コンパイルするsimulinkモデルの作成
-
+1. コンパイルするsimulinkモデルの作成\\
 外部(python)側から変更したいパラメータはmファイルで設定しますがグローバル変数で定義する必要があります．
 mファイルで定義したパラメータをブロック線図に入力してください.<br>
 例)
@@ -26,8 +25,7 @@ params_T.Elements(1).DataType = 'double';
 ```
 <img src="./image.png" width=300 alt="Total net revenue F for various BESS sizes"/>
 
-2. コンパイル
-
+2. コンパイル\\
 mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
 ```console
 ./build_simulink_model.m
