@@ -23,7 +23,9 @@ params_T.Elements(1) = Simulink.BusElement;
 params_T.Elements(1).Name     = 'K3'; #ここの名前を変更してください
 params_T.Elements(1).DataType = 'double';
 ```
-2. mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
+<img src="./image.png" width=300 alt="Total net revenue F for various BESS sizes"/>
+2. コンパイル
+mファイルを実行しC言語にコンパイル，soファイルの作成(パラメータ名は任意で定義してください)：
   ```console
   ./build_simulink_model.m
   ```
